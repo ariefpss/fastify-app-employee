@@ -7,6 +7,10 @@ fastify.register(require('point-of-view'), {
     },
     root: path.join(__dirname, 'views')
 });
+fastify.register(require('fastify-static'), {
+    root: path.join(__dirname, 'public')
+});
+
 fastify.register(require('./config/database'));
 fastify.register(require('./routes/user'));
 
