@@ -1,27 +1,16 @@
-const fastifyPlugin = require('fastify-plugin');
-const fsequelize = require('sequelize-fastify');
+const Sequlieze = require('sequelize');
 
-async function dbConnection (fastify, options) {
-    fastify.register(fsequelize, {
-                instance: 'sequelize',
-                autoConnect: true,
-                sequelizeOptions:{
-                    dialect: 'postgres',
-                    database: 'appemployee',
-                    username: 'postgres',
-                    password: '',
-                    options: {
-                        host: 'localhost',
-                        port: '5432'
-                    }
-                }
-    }).ready(async () => {
-        try {
-            console.log('Database is successfully connected.');
-        } catch (error) {
-            console.log('Database could not connected: '+error);
-        }
-    });
-}
+var db = {};
 
-module.exports = fastifyPlugin(dbConnection);
+const sequelize = new Sequlieze('appemployee', 'postgres', '', {
+    host: 'localhost',
+    port: 5432,
+    dialect: 'postgres'
+});
+
+db.sequelize = sequelize;
+db.Sequlieze = Sequlieze;
+
+db.user = require('../models/Muser')(sequelize, Sequlieze);
+
+module.exports = db;

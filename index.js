@@ -11,8 +11,7 @@ fastify.register(require('fastify-static'), {
     root: path.join(__dirname, 'public')
 });
 
-fastify.register(require('./config/database'));
-fastify.register(require('./routes/user'));
+fastify.register(require('./routes/Ruser'));
 
 fastify.listen(8080, (err, address) => {
     if (err) {
