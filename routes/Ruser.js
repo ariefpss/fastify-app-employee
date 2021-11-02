@@ -1,11 +1,14 @@
 const User = require('../config/database').user;
 
 async function routes (fastify, options) {
-    fastify.get('/', async (request, reply) => {
-        reply.view('home', {title: 'Employee'});
-        const getUser = await User.findAll();
 
-        console.log(getUser);
+    //TODO: Get view home
+    fastify.get('/', async (request, reply) => {
+        User
+            .findAll({limit: 5, offset: 0})
+            .then((user) => {
+                reply.view('home', {title: 'Employee', users: user});
+            });
     });
 };
 

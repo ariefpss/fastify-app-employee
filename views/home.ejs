@@ -4,11 +4,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title><%= title%></title>
 </head>
 <body>
-    <h1>Hello Wolrd</h1>
+    <!-- TODO: Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg text-white p-3 mb-2 bg-dark position-relative">
+            <div class="navbar-brand">List Users</div>
+            <form action="" class="d-flex position-absolute end-0">
+                <input class="form-control me-2" type="search" placeholder="by Id,Name,Email" name="" id="" aria-label="Search">
+                <button class="btn btn-outline-success me-3">Search</button>
+                <button class="btn btn-outline-success me-2">Add</button>
+            </form>
+        </nav>
+    </header>
+
+    <!-- TODO: Table view -->
+    <div class="container">
+        <table id="listUsers" class="table table-bordered table-hover table-striped">
+            <thead class="table-dark">
+                <tr class="text-center">
+                    <td id="id" class="sorting">ID</td>
+                    <td id="name" class="sorting">NAME</td>
+                    <td id="email" class="sorting">EMAIL</td>
+                    <td id="mobile" class="sorting">MOBILE</td>
+                    <td>ACTION</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < users.length; i++) { %>
+                    <tr>
+                        <td class="text-center"><%= users[i].id %> </td>
+                        <td class=""><%= users[i].name %> </td>
+                        <td><%= users[i].email %> </td>
+                        <td class="text-end"><%= users[i].mobile %> </td>
+                        <td class="text-center">
+                            <button class="btn btn-success">Detail</button>
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fixed-bottom">
+        <!-- TODO: Pagination -->
+        <div class="container mb-4">
+            <div class="justify-content-md-center row">
+                <div class="col-md-auto">
+                    <label class="pt-1">Show</label>
+                </div>
+                <div class="col-md-auto">
+                    <select class="form-select" id="limit">
+                        <option value=""></option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="col-md-auto">
+                    <label class="pt-1">Per Page</label>
+                </div>
+                <div class="col-md-auto">
+                    <nav>
+                        <ul class="pagination">
+                            <li id="firstPrev" class="page-item"> <a class="page-link first-link">&lt;</a> </li>
+                            <li id="previous" class="page-item"> <a class="page-link">&laquo;</a> </li>
+                            <li id="page" class="page-item"></li>
+                            <li id="next" class="page-item"> <a class="page-link">&raquo;</a> </li>
+                            <li id="lastNext" class="page-item"> <a class="page-link first-link">&gt;</a> </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: Footer -->
+        <div class="container-fluid bg-dark">
+            <div class="row">
+                <div class="col">
+                    <p class="text-center text-white my-2">copyright© RiefDev 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-<script src="js/materialize.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 </html>
