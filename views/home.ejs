@@ -36,7 +36,7 @@
                 <% for(var i=0; i < users.length; i++) { %>
                     <tr>
                         <td class="text-center"><%= users[i].id %> </td>
-                        <td class=""><%= users[i].name %> </td>
+                        <td><%= users[i].name %> </td>
                         <td><%= users[i].email %> </td>
                         <td class="text-end"><%= users[i].mobile %> </td>
                         <td class="text-center">
@@ -49,49 +49,31 @@
             </tbody>
         </table>
     </div>
-
-    <div class="fixed-bottom">
-        <!-- TODO: Pagination -->
-        <div class="container mb-4">
-            <div class="justify-content-md-center row">
-                <div class="col-md-auto">
-                    <label class="pt-1">Show</label>
-                </div>
-                <div class="col-md-auto">
-                    <select class="form-select" id="limit">
-                        <option value=""></option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </select>
-                </div>
-                <div class="col-md-auto">
-                    <label class="pt-1">Per Page</label>
-                </div>
-                <div class="col-md-auto">
-                    <nav>
-                        <ul class="pagination">
-                            <li id="firstPrev" class="page-item"> <a class="page-link first-link">&lt;</a> </li>
-                            <li id="previous" class="page-item"> <a class="page-link">&laquo;</a> </li>
-                            <li id="page" class="page-item"></li>
-                            <li id="next" class="page-item"> <a class="page-link">&raquo;</a> </li>
-                            <li id="lastNext" class="page-item"> <a class="page-link first-link">&gt;</a> </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-        <!-- TODO: Footer -->
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col">
-                    <p class="text-center text-white my-2">copyright© RiefDev 2021</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/pagination.js"></script>
+<script type="text/javascript">
+    $(document).ready(async function() {
+        var limit = 5;
+        var page = 1;
+
+
+        var users = await $.ajax({
+            url: 'http://localhost:8080/user',
+            type: 'get',
+            dataType: 'json'
+        });
+
+        $('#listUsers').pagination(users, limit);
+
+        $('select').on('change', function() {
+            limit = this.value;
+
+            $('#listUsers').pagination(users, limit);
+            $('#after').remove();
+        });
+
+    })
+</script>
 </html>
