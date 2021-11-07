@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title><%= title%></title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4 mb-5">Add User</h2>
+        <form id="adduser" class="border py-3 px-3 shadow-sm p-3 mb-5 bg-body rounded" action="/adduser" method="post">
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label">name</label>
+                <div class="col col-form-label">
+                    <input class="form-control" type="text" name="name" placeholder="Please input your name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col col-form-label">
+                    <input class="form-control" type="email" name="email" placeholder="Please input your email">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
+                <div class="col col-form-label">
+                    <input class="form-control" type="number" name="mobile" placeholder="Please input your mobile">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label">Birthdate</label>
+                <div class="col col-form-label">
+                    <input class="form-control" type="date" name="birthdate">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                <div class="col col-form-label">
+                    <input class="form-control" type="text" name="address" placeholder="Please input your address">
+                </div>
+            </div>
+            <div class="mt-5 d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" formaction="/" formmethod="get">Cancel</button>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#adduser").validate({
+            errorClass: "is-invalid",
+            validClss: "is-valid",
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                mobile: "required",
+                birthdate: "required",
+                address: "required"
+
+            },
+            messages: {
+                name: "Name cannot be empety...!!!",
+                email: {
+                    required: "email cannot be empty...!!!",
+                    email: "Invalid format email"
+                },
+                mobile: "Mobile cannot be empty...!!!",
+                birthdate: "Birthdate connot be empty...!!!",
+                address: "Address cannot be empty...!!!"
+            }
+        });
+    });
+</script>
+</html>
