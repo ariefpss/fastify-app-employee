@@ -10,6 +10,7 @@ fastify.register(require('point-of-view'), {
 fastify.register(require('fastify-static'), {
     root: path.join(__dirname, 'public')
 });
+fastify.register(require('fastify-formbody'));
 
 fastify.register(require('./routes/Ruser'));
 
