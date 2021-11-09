@@ -1,5 +1,9 @@
-const fastify = require('fastify')({logger: true});
 const path = require('path');
+const qs = require('qs')
+const fastify = require('fastify')({
+    logger: true,
+    querystringParser: str => qs.parse(str)
+});
 
 fastify.register(require('point-of-view'), {
     engine: {
