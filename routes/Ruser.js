@@ -1,3 +1,5 @@
+const {Op} = require('sequelize');
+
 const User = require('../config/database').user;
 const Generateid = require('../service/customId');
 
@@ -48,6 +50,30 @@ async function routes (fastify, options) {
         await createuser.save();
 
         reply.redirect('/adduser');
+    });
+
+    //todo: find data through search input
+    fastify.post('/user/search', (request, reply) => {
+        let search = request.body.search;
+
+        let convert = parseInt(search);
+        let searchMobile = isNaN(convert) ? 0 : convert;
+
+        User.
+            findAll({
+                attributes: ['id', 'name', 'email', 'mobile'],
+                where: {
+                    [Op.or] : {
+                        id: {[Op.substring] : search},
+                        name: {[Op.substring] : search},
+                        email: {[Op.substring] : search},
+                        mobile: {[Op.eq] : searchMobile}
+                    }
+                }
+            })
+            .then((user) => {
+                reply.send({users: user});
+            });
     });
 };
 

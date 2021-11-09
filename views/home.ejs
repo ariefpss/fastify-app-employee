@@ -12,11 +12,13 @@
     <header>
         <nav class="navbar navbar-expand-lg text-white p-3 mb-2 bg-dark position-relative">
             <div class="navbar-brand">List Users</div>
-            <form action="" class="d-flex position-absolute end-0">
-                <input class="form-control me-2" type="search" placeholder="by Id,Name,Email" name="" id="" aria-label="Search">
-                <button class="btn btn-outline-success me-3">Search</button>
-                <button formaction="/adduser" class="btn btn-outline-success me-2">Add</button>
-            </form>
+            <div class="d-flex position-absolute end-0">
+                <input class="form-control me-2" type="search" placeholder="by Id,Name,Email" id="inpsearch" aria-label="Search">
+                <button id="btnsearch" class="btn btn-outline-success me-3">Search</button>
+                <form>
+                    <button formaction="/adduser" class="btn btn-outline-success me-2">Add</button>
+                </form>
+            </div>
         </nav>
     </header>
 
@@ -74,6 +76,42 @@
             $('#after').remove();
         });
 
+        $('button#btnsearch').click(async function() {
+            let search = $('#inpsearch').val();
+
+            $.ajax({
+                url: 'http://localhost:8080/user/search',
+                type: 'post',
+                data: {search},
+                dataType: 'json',
+                success: function(data) {
+                    let tmpHTML = '';
+                    if (!data.users.length){
+                        tmpHTML += "<tr><td class='text-center' colspan='5'>Data does not match</td></tr>"
+                    } else {
+                        for (let index = 0; index < data.users.length; index++) {
+                            tmpHTML +=  "<tr><td class='text-center'>"+data.users[index].id+
+                                        "</td><td>"+data.users[index].name+
+                                        "</td><td>"+data.users[index].email+
+                                        "</td><td class='text-end'>"+data.users[index].mobile+
+                                        "</td><td class='text-center'><a class='btn btn-success'>"+"Detail"+
+                                                "</a><a class='btn btn-success ms-3'>"+"Edit"+
+                                                "</a><a class='btn btn-danger ms-3'>"+"Delete"+
+                                        "</a></td></tr>";
+                        }
+                    }
+                    $('#listUsers > tbody').empty().append(tmpHTML);
+
+                    $('ul.pagination > li#next').addClass('disabled');
+                    $('ul.pagination > li#lastNext').addClass('disabled');
+                    $('ul.pagination > li#previous').addClass('disabled');
+                    $('ul.pagination > li#firstPrev').addClass('disabled');
+
+                    let text = "<a class='page-link'>This search data</a>";
+                    $('ul.pagination > li#page').empty().append(text);
+                }
+            })
+        })
     })
 </script>
 </html>
