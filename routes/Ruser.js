@@ -7,7 +7,6 @@ async function routes (fastify, options) {
 
     //TODO: Activity GET
 
-    //todo: get view home
     fastify.get('/', async (request, reply) => {
         User
             .findAll({limit: 5, offset: 0})
@@ -16,12 +15,14 @@ async function routes (fastify, options) {
             });
     });
 
-    //todo: get view create user
     fastify.get('/adduser', async(request, reply) => {
         reply.view('user/adduser', {title: 'Employee'});
     });
 
-    //todo: get all data in database
+    fastify.get('/user/edit', async(request, reply) => {
+        reply.view('user/edituser', {title: 'Employee'});
+    });
+
     fastify.get('/user', async (request, reply) => {
         User
             .findAll()
@@ -29,6 +30,8 @@ async function routes (fastify, options) {
                 reply.send({users: user});
             });
     });
+
+
 
     //TODO: Activity CRUD
 
