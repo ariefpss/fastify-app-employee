@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title><%= title%></title>
 </head>
 <body>
-    <h1>Hello Wolrd</h1>
+    <div class="container">
+        <h2 class="mt-4 mb-5">Edit User</h2>
+        <div class="border py-3 px-3 shadow-sm p-3 mb-5 bg-body rounded">
+            <form action="">
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Id</label>
+                    <div class="col col-form-label">
+                        <input class="form-control" type="text" id="id" value="<%= userId %> " disabled readonly>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/pagination.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/pagination.js"></script>
 </html>

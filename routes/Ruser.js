@@ -19,8 +19,10 @@ async function routes (fastify, options) {
         reply.view('user/adduser', {title: 'Employee'});
     });
 
-    fastify.get('/user/edit', async(request, reply) => {
-        reply.view('user/edituser', {title: 'Employee'});
+    fastify.get('/edituser/:id', async(request, reply) => {
+        let userId = request.params.id;
+
+        reply.view('user/edituser', {userId, title: 'Employee'});
     });
 
     fastify.get('/user', async (request, reply) => {

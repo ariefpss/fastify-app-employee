@@ -9,10 +9,10 @@ $(function(){
                             "</td><td>"+data.users[i].name+
                             "</td><td>"+data.users[i].email+
                             "</td><td class='text-end'>"+data.users[i].mobile+
-                            "</td><td class='text-center'><form><button class='btn btn-success'>"+"Detail"+
-                                    "</button><button formaction='/user/edit' class='btn btn-success ms-3'>"+"Edit"+
-                                    "</button><button class='btn btn-danger ms-3'>"+"Delete"+
-                            "</button></form></td></tr>";
+                            "</td><td class='text-center'><button class='btn btn-success'>"+"Detail"+
+                                    "</button><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
+                                    "</a><button class='btn btn-danger ms-3'>"+"Delete"+
+                            "</button></td></tr>";
             };
 
             return tmpHTML;
