@@ -15,6 +15,14 @@ async function routes (fastify, options) {
             });
     });
 
+    fastify.get('/user', async (request, reply) => {
+        User
+            .findAll()
+            .then((user) => {
+                reply.send({users: user});
+            });
+    });
+
     fastify.get('/adduser', async(request, reply) => {
         reply.view('user/adduser', {title: 'Employee'});
     });
@@ -25,19 +33,12 @@ async function routes (fastify, options) {
         reply.view('user/edituser', {userId, title: 'Employee'});
     });
 
-    fastify.get('/user', async (request, reply) => {
-        User
-            .findAll()
-            .then((user) => {
-                reply.send({users: user});
-            });
-    });
+
 
 
 
     //TODO: Activity CRUD
 
-    //todo: create users
     fastify.post('/adduser', async(request, reply) => {
         let customId = new Generateid();
 
@@ -57,7 +58,6 @@ async function routes (fastify, options) {
         reply.redirect('/adduser');
     });
 
-    //todo: find data through search input
     fastify.post('/user/search', (request, reply) => {
         let search = request.body.search;
 
@@ -79,6 +79,24 @@ async function routes (fastify, options) {
             .then((user) => {
                 reply.send({users: user});
             });
+    });
+
+    fastify.post('/edituser/:id', async (request, reply) => {
+        const _id = request.params.id;
+
+        await User.update({
+            name: request.body.name,
+            email: request.body.email,
+            mobile: request.body.mobile,
+            birthdate: request.body.birthdate,
+            address: request.body.address
+        }, {
+            where: {
+                id: _id
+            }
+        });
+
+        reply.redirect('/edituser/'+_id)
     });
 };
 

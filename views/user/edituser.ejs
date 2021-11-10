@@ -10,12 +10,46 @@
     <div class="container">
         <h2 class="mt-4 mb-5">Edit User</h2>
         <div class="border py-3 px-3 shadow-sm p-3 mb-5 bg-body rounded">
-            <form action="">
+            <form id="edituser" action="/edituser/<%= userId %>" method="post">
                 <div class="mb-3 row">
                     <label for="id" class="col-sm-2 col-form-label">Id</label>
                     <div class="col col-form-label">
-                        <input class="form-control" type="text" id="id" value="<%= userId %> " disabled readonly>
+                        <input class="form-control" value="<%= userId %> " disabled readonly>
                     </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col col-form-label">
+                        <input class="form-control" type="text" name="name" placeholder="Input your name will a edit">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col col-form-label">
+                        <input class="form-control" type="email" name="email" placeholder="Input your email will a edit">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Mobile</label>
+                    <div class="col col-form-label">
+                        <input class="form-control" type="number" name="mobile" placeholder="Input your mobile will a edit">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Birthdate</label>
+                    <div class="col col-form-label">
+                        <input class="form-control" type="date" name="birthdate">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col col-form-label">
+                        <textarea name="address" class="form-control" placeholder="Input your address will a edit"></textarea>
+                    </div>
+                </div>
+                <div class="mt-5 d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" formaction="/" formmethod="get">Cancel</button>
+                    <button class="btn btn-primary" id="submitedit" type="submit">Submit</button>
                 </div>
             </form>
         </div>
@@ -23,5 +57,34 @@
 </body>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script src="/js/pagination.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form#edituser').validate({
+            errorClass: "is-invalid",
+            validClss: "is-valid",
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                mobile: "required",
+                birthdate: "required",
+                address: "required"
+
+            },
+            messages: {
+                name: "Name cannot be empety...!!!",
+                email: {
+                    required: "email cannot be empty...!!!",
+                    email: "Invalid format email"
+                },
+                mobile: "Mobile cannot be empty...!!!",
+                birthdate: "Birthdate connot be empty...!!!",
+                address: "Address cannot be empty...!!!"
+            }
+        })
+    });
+</script>
 </html>
