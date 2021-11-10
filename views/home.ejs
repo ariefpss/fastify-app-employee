@@ -44,7 +44,7 @@
                         <td class="text-center">
                             <button class="btn btn-success">Detail</button>
                             <a href='/edituser/<%= users[i].id %>' class="btn btn-success">Edit</a>
-                            <button class="btn btn-danger">Delete</button>
+                            <a href='/deleteuser/<%= users[i].id %>' class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <% } %>
@@ -96,8 +96,8 @@
                                         "</td><td class='text-end'>"+data.users[index].mobile+
                                         "</td><td class='text-center'><button class='btn btn-success'>"+"Detail"+
                                             "</button><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
-                                            "</a><button class='btn btn-danger ms-3'>"+"Delete"+
-                                        "</button></td></tr>";
+                                            "</a><a href='/deleteuser/"+data.users[i].id+"' class='btn btn-danger ms-3'>"+"Delete"+
+                                        "</a></td></tr>";
                         }
                     }
                     $('#listUsers > tbody').empty().append(tmpHTML);

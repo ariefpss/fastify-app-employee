@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title><%= title%></title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4 mb-5">Delete User</h2>
+        <div class="border py-3 px-3 shadow-sm p-3 mb-5 bg-body rounded">
+            <form action="/deleteuser/<%= users.id %> " method="post">
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">ID</label>
+                    <label class="col col-form-label" for="">: <%= users.id %> </label>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">Name</label>
+                    <label class="col col-form-label" for="">: <%= users.name %> </label>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">Email</label>
+                    <label class="col col-form-label" for="">: <%= users.email %> </label>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">Mobile</label>
+                    <label class="col col-form-label" for="">: <%= users.mobile %> </label>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">Birthdate</label>
+                    <label class="col col-form-label" for="">: <%= repBrithdate %> </label>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="id">Address</label>
+                    <label class="col col-form-label" for="">: <%= users.address %> </label>
+                </div>
+                <div class="mt-5 row">
+                    <p class="col">Are you sure want to delete this user ?</p>
+                </div>
+                <div class="mt-5 d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" formaction="/" formmethod="get">Cancel</button>
+                    <button class="btn btn-danger" id="submitedit" type="submit">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="/js/bootstrap.min.js"></script>
+</html>

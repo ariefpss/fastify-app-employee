@@ -11,8 +11,8 @@ $(function(){
                             "</td><td class='text-end'>"+data.users[i].mobile+
                             "</td><td class='text-center'><button class='btn btn-success'>"+"Detail"+
                                     "</button><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
-                                    "</a><button class='btn btn-danger ms-3'>"+"Delete"+
-                            "</button></td></tr>";
+                                    "</a><a href='/deleteuser/"+data.users[i].id+"' class='btn btn-danger ms-3'>"+"Delete"+
+                            "</a></td></tr>";
             };
 
             return tmpHTML;

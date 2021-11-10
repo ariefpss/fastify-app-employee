@@ -33,8 +33,24 @@ async function routes (fastify, options) {
         reply.view('user/edituser', {userId, title: 'Employee'});
     });
 
+    fastify.get('/deleteuser/:id', async(request, reply) => {
+        User
+            .findOne({ where: {id: request.params.id} })
+            .then((user) => {
+                let formatMonth = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+                let brithdate = user.birthdate;
 
+                let reqDate = brithdate.split('-').slice(2).toString();
+                let reqMonth = brithdate.split('-').slice(1, -1);
+                let reqYears = brithdate.split('-').slice(0, -2).toString();
 
+                let month = formatMonth[Number(reqMonth)-1];
+
+                let repBrithdate = reqDate.concat(' ', month, ' ', reqYears);
+
+                reply.view('user/deleteuser', {users: user, repBrithdate, title: 'Employee'});
+            });
+    });
 
 
     //TODO: Activity CRUD
@@ -97,6 +113,14 @@ async function routes (fastify, options) {
         });
 
         reply.redirect('/edituser/'+_id)
+    });
+
+    fastify.post('/deleteuser/:id', async (request, reply) => {
+        const _id = request.params.id;
+
+        await User.destroy({ where: {id: _id} })
+
+        reply.redirect('/');
     });
 };
 
