@@ -9,8 +9,8 @@ $(function(){
                             "</td><td>"+data.users[i].name+
                             "</td><td>"+data.users[i].email+
                             "</td><td class='text-end'>"+data.users[i].mobile+
-                            "</td><td class='text-center'><button class='btn btn-success'>"+"Detail"+
-                                    "</button><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
+                            "</td><td class='text-center'><a href='/detailuser/"+data.users[i].id+"' class='btn btn-success'>"+"Detail"+
+                                    "</a><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
                                     "</a><a href='/deleteuser/"+data.users[i].id+"' class='btn btn-danger ms-3'>"+"Delete"+
                             "</a></td></tr>";
             };

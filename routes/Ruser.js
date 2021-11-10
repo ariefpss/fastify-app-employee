@@ -52,6 +52,25 @@ async function routes (fastify, options) {
             });
     });
 
+    fastify.get('/detailuser/:id', async(request, reply) => {
+        User
+            .findOne({ where: {id: request.params.id} })
+            .then((user) => {
+                let formatMonth = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+                let brithdate = user.birthdate;
+
+                let reqDate = brithdate.split('-').slice(2).toString();
+                let reqMonth = brithdate.split('-').slice(1, -1);
+                let reqYears = brithdate.split('-').slice(0, -2).toString();
+
+                let month = formatMonth[Number(reqMonth)-1];
+
+                let repBrithdate = reqDate.concat(' ', month, ' ', reqYears);
+
+                reply.view('user/detailuser', {users: user, repBrithdate, title: 'Employee'});
+            });
+    });
+
 
     //TODO: Activity CRUD
 

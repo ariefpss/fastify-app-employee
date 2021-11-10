@@ -42,9 +42,9 @@
                         <td><%= users[i].email %> </td>
                         <td class="text-end"><%= users[i].mobile %> </td>
                         <td class="text-center">
-                            <button class="btn btn-success">Detail</button>
-                            <a href='/edituser/<%= users[i].id %>' class="btn btn-success">Edit</a>
-                            <a href='/deleteuser/<%= users[i].id %>' class="btn btn-danger">Delete</a>
+                            <a href="/detailuser/<%= users[i].id %> " class="btn btn-success">Detail</a>
+                            <a href="/edituser/<%= users[i].id %>" class="btn btn-success">Edit</a>
+                            <a href="/deleteuser/<%= users[i].id %>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <% } %>
@@ -94,9 +94,9 @@
                                         "</td><td>"+data.users[index].name+
                                         "</td><td>"+data.users[index].email+
                                         "</td><td class='text-end'>"+data.users[index].mobile+
-                                        "</td><td class='text-center'><button class='btn btn-success'>"+"Detail"+
-                                            "</button><a href='/edituser/"+data.users[i].id+"' class='btn btn-success ms-3'>"+"Edit"+
-                                            "</a><a href='/deleteuser/"+data.users[i].id+"' class='btn btn-danger ms-3'>"+"Delete"+
+                                        "</td><td class='text-center'><a href='/detailuser/"+data.users[index].id+"' class='btn btn-success'>"+"Detail"+
+                                            "</a><a href='/edituser/"+data.users[index].id+"' class='btn btn-success ms-3'>"+"Edit"+
+                                            "</a><a href='/deleteuser/"+data.users[index].id+"' class='btn btn-danger ms-3'>"+"Delete"+
                                         "</a></td></tr>";
                         }
                     }
